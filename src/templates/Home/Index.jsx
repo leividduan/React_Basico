@@ -7,7 +7,7 @@ import { Posts } from "../../components/Posts";
 import { Button } from "../../components/Button";
 import { TextInput } from "../../components/TextInput";
 
-class Home extends Component {
+export class Home extends Component {
   state = {
     posts: [],
     allPosts: [],
@@ -65,7 +65,7 @@ class Home extends Component {
         </div>
 
         {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
-        {filteredPosts.length == 0 && <p>Não existem posts</p>}
+        {filteredPosts.length === 0 && <p>Não existem posts</p>}
 
         <div className="button-container">
           {!searchValue && (
@@ -80,5 +80,3 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
