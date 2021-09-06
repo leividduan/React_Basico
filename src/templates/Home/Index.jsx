@@ -1,25 +1,23 @@
-import "./styles.css";
+import './styles.css';
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import { loadPosts } from "../../utils/load-posts";
-import { Posts } from "../../components/Posts";
-import { Button } from "../../components/Button";
-import { TextInput } from "../../components/TextInput";
+import { loadPosts } from '../../utils/load-posts';
+import { Posts } from '../../components/Posts';
+import { Button } from '../../components/Button';
+import { TextInput } from '../../components/TextInput';
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [postPerPage] = useState(10);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const noMorePosts = page + postPerPage >= allPosts.length;
 
-  const filteredPosts = !!searchValue
-    ? allPosts.filter((posts) =>
-        posts.title.toLowerCase().includes(searchValue.toLowerCase())
-      )
+  const filteredPosts = searchValue
+    ? allPosts.filter((posts) => posts.title.toLowerCase().includes(searchValue.toLowerCase()))
     : posts;
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
@@ -58,13 +56,7 @@ export const Home = () => {
       {filteredPosts.length === 0 && <p>Não existem posts</p>}
 
       <div className="button-container">
-        {!searchValue && (
-          <Button
-            text="Load More Posts"
-            onClick={loadMorePosts}
-            disabled={noMorePosts}
-          />
-        )}
+        {!searchValue && <Button text="Load More Posts" onClick={loadMorePosts} disabled={noMorePosts} />}
       </div>
     </section>
   );
